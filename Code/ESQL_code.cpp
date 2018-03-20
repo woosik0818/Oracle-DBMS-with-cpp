@@ -113,7 +113,7 @@ int main()
 		FOREIGN KEY (lid)	REFERENCES library
 	);
 
-	printf("==================================\n");			//fprintf로 할 필요는 없는?
+	printf("==================================\n");	
 	printf("1.1. 회원가입\n 1.2. 로그인\n 1.3. 종료\n");
 	doTask();
 
