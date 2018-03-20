@@ -1,8 +1,8 @@
-// Çì´õ ¼±¾ğ
+// í—¤ë” ì„ ì–¸
 #include <stdio.h>
 #include <string.h>
 
-// »ó¼ö ¼±¾ğ
+// ìƒìˆ˜ ì„ ì–¸
 #define MAX_STRING 32
 #define INPUT_FILE_NAME "input.txt"
 #define OUTPUT_FILE_NAME "output.txt"
@@ -45,17 +45,17 @@ EXEC SQL BEGIN DECLARE SECTION;
 
 EXEC SQL END DECLARE SECTION;
 
-// ÇÔ¼ö ¼±¾ğ
+// í•¨ìˆ˜ ì„ ì–¸
 void join();
 void doTask();
 
-// º¯¼ö ¼±¾ğ
+// ë³€ìˆ˜ ì„ ì–¸
 FILE* in_fp, *out_fp;
 int i=1;
 
 int main()
 {
-	// ÆÄÀÏ ÀÔÃâ·ÂÀ» À§ÇÑ ÃÊ±âÈ­
+	// íŒŒì¼ ì…ì¶œë ¥ì„ ìœ„í•œ ì´ˆê¸°í™”
 	in_fp = fopen(INPUT_FILE_NAME, "r+");
 	out_fp = fopen(OUTPUT_FILE_NAME, "w+");
 
@@ -113,8 +113,8 @@ int main()
 		FOREIGN KEY (lid)	REFERENCES library
 	);
 
-	printf("==================================\n");			//fprintf·Î ÇÒ ÇÊ¿ä´Â ¾ø´Â?
-	printf("1.1. È¸¿ø°¡ÀÔ\n 1.2. ·Î±×ÀÎ\n 1.3. Á¾·á\n");
+	printf("==================================\n");			//fprintfë¡œ í•  í•„ìš”ëŠ” ì—†ëŠ”?
+	printf("1.1. íšŒì›ê°€ì…\n 1.2. ë¡œê·¸ì¸\n 1.3. ì¢…ë£Œ\n");
 	doTask();
 
 	EXEC SQL DROP TABLE appointment;
@@ -129,33 +129,33 @@ int main()
 
 void doTask()
 {
-	// ¸Ş´º ÆÄ½ÌÀ» À§ÇÑ level ±¸ºĞÀ» À§ÇÑ º¯¼ö
+	// ë©”ë‰´ íŒŒì‹±ì„ ìœ„í•œ level êµ¬ë¶„ì„ ìœ„í•œ ë³€ìˆ˜
 	int menu_level_1 = 0, menu_level_2 = 0;
 
 	char t_anum[15];
     char input_id[15];
 
 
-	// Á¾·á ¸Ş´º(1.3)°¡ ÀÔ·ÂµÇ±â Àü±îÁö ¹İº¹ÇÔ
+	// ì¢…ë£Œ ë©”ë‰´(1.3)ê°€ ì…ë ¥ë˜ê¸° ì „ê¹Œì§€ ë°˜ë³µí•¨
 	while(menu_level_1 != 1 || menu_level_2 != 3)
 	{
-		// ÀÔ·ÂÆÄÀÏ¿¡¼­ ¸Ş´º ¼ıÀÚ 2°³¸¦ ÀĞ±â
+		// ì…ë ¥íŒŒì¼ì—ì„œ ë©”ë‰´ ìˆ«ì 2ê°œë¥¼ ì½ê¸°
 		fscanf(in_fp, "%d %d ", &menu_level_1, &menu_level_2);
 
-		// ¸Ş´º ±¸ºĞ ¹× ÇØ´ç ¿¬»ê ¼öÇà
+		// ë©”ë‰´ êµ¬ë¶„ ë° í•´ë‹¹ ì—°ì‚° ìˆ˜í–‰
 		switch(menu_level_1)
 		{
 		case 1:
 			{
 				switch(menu_level_2)
 				{
-				case 1:   // "1.1. È¸¿ø°¡ÀÔ¡° ¸Ş´º ºÎºĞ
+				case 1:   // "1.1. íšŒì›ê°€ì…â€œ ë©”ë‰´ ë¶€ë¶„
 					{
-						// join() ÇÔ¼ö¿¡¼­ ÇØ´ç ±â´É ¼öÇà
+						// join() í•¨ìˆ˜ì—ì„œ í•´ë‹¹ ê¸°ëŠ¥ ìˆ˜í–‰
 						join();
 						break;
 					}
-				 case 2:	//1.2 ·Î±×ÀÎ ¸Ş´º ºÎºĞ
+				 case 2:	//1.2 ë¡œê·¸ì¸ ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", input_id);
 						strcpy(CID, input_id);
@@ -170,29 +170,29 @@ void doTask()
 						WHERE cid = :CID; */
 
 						if(strcmp(input_id, "admin") == 0 && cnt == 1){
-							fprintf(out_fp, "1.2. ·Î±×ÀÎ\n");
+							fprintf(out_fp, "1.2. ë¡œê·¸ì¸\n");
 							fprintf(out_fp, "> %s\n", result_id);
 							printf("==================================\n");
-							printf("3.1. µµ¼­°ü Á¤º¸ µî·Ï\n3.2. µµ¼­°ü Á¤º¸ »èÁ¦\n3.3. µµ¼­ Á¤º¸ µî·Ï\n3.4. µµ¼­ Á¤º¸ »èÁ¦\n3.5. »ç¼­ Á¤º¸ µî·Ï\n3.6. »ç¼­ Á¤º¸ »èÁ¦\n3.7. µµ¼­°ü Á¤º¸ ÀüÃ¼ Á¶È¸\n3.8. µµ¼­°ü Á¤º¸ ÀÌ¸§ Á¶È¸\n3.9. »ç¼­ Á¤º¸ ÀüÃ¼ Á¶È¸\n3.10. ¿¹¾à ³»¿ª ÀüÃ¼ Á¶È¸\n3.11. ¿¹¾à ³»¿ª µµ¼­ÀÌ¸§ Á¶È¸\n3.12. ¿¹¾à ³»¿ª °í°´ÀÌ¸§ Á¶È¸\n3.13. ·Î±×¾Æ¿ô\n");
+							printf("3.1. ë„ì„œê´€ ì •ë³´ ë“±ë¡\n3.2. ë„ì„œê´€ ì •ë³´ ì‚­ì œ\n3.3. ë„ì„œ ì •ë³´ ë“±ë¡\n3.4. ë„ì„œ ì •ë³´ ì‚­ì œ\n3.5. ì‚¬ì„œ ì •ë³´ ë“±ë¡\n3.6. ì‚¬ì„œ ì •ë³´ ì‚­ì œ\n3.7. ë„ì„œê´€ ì •ë³´ ì „ì²´ ì¡°íšŒ\n3.8. ë„ì„œê´€ ì •ë³´ ì´ë¦„ ì¡°íšŒ\n3.9. ì‚¬ì„œ ì •ë³´ ì „ì²´ ì¡°íšŒ\n3.10. ì˜ˆì•½ ë‚´ì—­ ì „ì²´ ì¡°íšŒ\n3.11. ì˜ˆì•½ ë‚´ì—­ ë„ì„œì´ë¦„ ì¡°íšŒ\n3.12. ì˜ˆì•½ ë‚´ì—­ ê³ ê°ì´ë¦„ ì¡°íšŒ\n3.13. ë¡œê·¸ì•„ì›ƒ\n");
 						}
 						
 						else if(cnt == 1){
-							fprintf(out_fp, "1.2. ·Î±×ÀÎ\n");
+							fprintf(out_fp, "1.2. ë¡œê·¸ì¸\n");
 							fprintf(out_fp, "> %s\n", result_id);
 							printf("==================================\n");
-							printf("2.1. È¸¿ø Á¤º¸ Á¶È¸\n2.2. µµ¼­ ¿¹¾à\n2.3. µµ¼­ ¿¹¾à Á¶È¸\n2.4. µµ¼­ ¿¹¾à »èÁ¦\n2.5. È¸¿øÅ»Åğ\n2.6. ·Î±×¾Æ¿ô\n");
+							printf("2.1. íšŒì› ì •ë³´ ì¡°íšŒ\n2.2. ë„ì„œ ì˜ˆì•½\n2.3. ë„ì„œ ì˜ˆì•½ ì¡°íšŒ\n2.4. ë„ì„œ ì˜ˆì•½ ì‚­ì œ\n2.5. íšŒì›íƒˆí‡´\n2.6. ë¡œê·¸ì•„ì›ƒ\n");
 							}
 						else{
 		
-							fprintf(out_fp, "ÀÏÄ¡ÇÏ´Â id°¡ ¾ø½À´Ï´Ù.\n");
+							fprintf(out_fp, "ì¼ì¹˜í•˜ëŠ” idê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 							printf("==================================\n");
-							printf("1.1. È¸¿ø°¡ÀÔ\n 1.2. ·Î±×ÀÎ\n 1.3. Á¾·á\n");
+							printf("1.1. íšŒì›ê°€ì…\n 1.2. ë¡œê·¸ì¸\n 1.3. ì¢…ë£Œ\n");
 						}
                         break;
                     }
 				case 3:
 					{
-						fprintf(out_fp, "1.3. Á¾·á\n");
+						fprintf(out_fp, "1.3. ì¢…ë£Œ\n");
 						return 0;
 					}
 				}
@@ -202,18 +202,18 @@ void doTask()
 			{
 				switch(menu_level_2)
 				{
-				case 1:   // "2.1 È¸¿ø Á¤º¸ Á¶È¸¡° ¸Ş´º ºÎºĞ
+				case 1:   // "2.1 íšŒì› ì •ë³´ ì¡°íšŒâ€œ ë©”ë‰´ ë¶€ë¶„
 					{
 						EXEC SQL SELECT cname, caddr, cnum INTO :CNAME, :CADDR, :CNUM
 						FROM customer
 						WHERE cid = :CID;
 
-						fprintf(out_fp, "2.1. È¸¿ø Á¤º¸ Á¶È¸\n");
+						fprintf(out_fp, "2.1. íšŒì› ì •ë³´ ì¡°íšŒ\n");
 						fprintf(out_fp, "> %s %s %s %s\n", CID, CNAME, CADDR, CNUM);
 
 						break;
 					}
-				case 2:	//2.2 µµ¼­ ¿¹¾à ¸Ş´º ºÎºĞ
+				case 2:	//2.2 ë„ì„œ ì˜ˆì•½ ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", BNAME);
 
@@ -229,19 +229,19 @@ void doTask()
 						(:CID, :BID, :LID, :ANUM);
 						i++;
 
-						fprintf(out_fp, "2.2. µµ¼­ ¿¹¾à\n");
+						fprintf(out_fp, "2.2. ë„ì„œ ì˜ˆì•½\n");
 						fprintf(out_fp, "> %s %s %s %s %d %d\n", ANUM, BNAME, AUTHOR, TYPE, YEAR, PAGE);
 
 						break;
 					}
-				case 3:	// 2.3 µµ¼­ ¿¹¾à Á¶È¸ ¸Ş´º ºÎºĞ
+				case 3:	// 2.3 ë„ì„œ ì˜ˆì•½ ì¡°íšŒ ë©”ë‰´ ë¶€ë¶„
 					{
 						EXEC SQL DECLARE c1 CURSOR FOR
 						SELECT a.anum, b.bname, b.author, b.type, b.year, b.page
 						FROM books b, appointment a
 						WHERE a.cid=:CID and b.bid=a.bid;
 
-						fprintf(out_fp, "2.3. µµ¼­ ¿¹¾à Á¶È¸\n");
+						fprintf(out_fp, "2.3. ë„ì„œ ì˜ˆì•½ ì¡°íšŒ\n");
 
 						EXEC SQL OPEN c1;
 						for(;;)
@@ -267,23 +267,23 @@ void doTask()
 
 						break;
 					}
-				case 4:	// 2.4 µµ¼­ ¿¹¾à »èÁ¦ ¸Ş´º ºÎºĞ
+				case 4:	// 2.4 ë„ì„œ ì˜ˆì•½ ì‚­ì œ ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", ANUM);
 
 						EXEC SQL DELETE FROM appointment
 						WHERE anum = :ANUM;
 
-						// Ãâ·Â Çü½Ä
-						fprintf(out_fp, "2.4. µµ¼­ ¿¹¾à »èÁ¦\n");
+						// ì¶œë ¥ í˜•ì‹
+						fprintf(out_fp, "2.4. ë„ì„œ ì˜ˆì•½ ì‚­ì œ\n");
 						fprintf(out_fp, "> %s\n", ANUM);
 
 						break;
 					}
-				case 5:	// 2.5 È¸¿øÅ»Åğ ¸Ş´º ºÎºĞ
+				case 5:	// 2.5 íšŒì›íƒˆí‡´ ë©”ë‰´ ë¶€ë¶„
 					{
-						// Ãâ·Â Çü½Ä
-						fprintf(out_fp, "2.5. È¸¿øÅ»Åğ\n");
+						// ì¶œë ¥ í˜•ì‹
+						fprintf(out_fp, "2.5. íšŒì›íƒˆí‡´\n");
 						fprintf(out_fp, "> %s\n", CID);
 
 						EXEC SQL DELETE FROM customer
@@ -293,9 +293,9 @@ void doTask()
 					}
 				case 6:
 					{
-						fprintf(out_fp, "2.6. ·Î±×¾Æ¿ô\n");
+						fprintf(out_fp, "2.6. ë¡œê·¸ì•„ì›ƒ\n");
 						printf("==================================\n");
-						printf("1.1. È¸¿ø°¡ÀÔ\n 1.2. ·Î±×ÀÎ\n 1.3. Á¾·á\n");
+						printf("1.1. íšŒì›ê°€ì…\n 1.2. ë¡œê·¸ì¸\n 1.3. ì¢…ë£Œ\n");
 						break;
 					}
 				}
@@ -305,85 +305,85 @@ void doTask()
 			{
 				switch (menu_level_2)
 				{
-				case 1:		 // "3.1 µµ¼­°ü Á¤º¸ µî·Ï¡° ¸Ş´º ºÎºĞ
+				case 1:		 // "3.1 ë„ì„œê´€ ì •ë³´ ë“±ë¡â€œ ë©”ë‰´ ë¶€ë¶„
 					{
 
 						fscanf(in_fp, "%s %s %s %s", LID, LNAME, LADDR, LNUM);
 
 						EXEC SQL INSERT INTO library VALUES(:LID, :LNAME, :LADDR, :LNUM);
 
-						// Ãâ·Â Çü½Ä
-						fprintf(out_fp, "3.1. µµ¼­°ü Á¤º¸ µî·Ï\n");
+						// ì¶œë ¥ í˜•ì‹
+						fprintf(out_fp, "3.1. ë„ì„œê´€ ì •ë³´ ë“±ë¡\n");
 						fprintf(out_fp, "> %s %s %s %s\n", LID, LNAME, LADDR, LNUM);
 						break;
 					}
-				case 2:		 // "3.2 µµ¼­°ü Á¤º¸ »èÁ¦¡° ¸Ş´º ºÎºĞ
+				case 2:		 // "3.2 ë„ì„œê´€ ì •ë³´ ì‚­ì œâ€œ ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", LID);
 
 						EXEC SQL DELETE FROM library
 						WHERE lid = :LID;
 
-						// Ãâ·Â Çü½Ä
-						fprintf(out_fp, "3.2. µµ¼­°ü Á¤º¸ »èÁ¦\n");
+						// ì¶œë ¥ í˜•ì‹
+						fprintf(out_fp, "3.2. ë„ì„œê´€ ì •ë³´ ì‚­ì œ\n");
 						fprintf(out_fp, "> %s\n", LID);
 						break;
 					}
-				case 3:         // "3.3 µµ¼­ Á¤º¸  µî·Ï" ¸Ş´º ºÎºĞ
+				case 3:         // "3.3 ë„ì„œ ì •ë³´  ë“±ë¡" ë©”ë‰´ ë¶€ë¶„
                     {
                         fscanf(in_fp, "%s %s %s %s %d %d %s", BID, BNAME, AUTHOR, TYPE, YEAR, PAGE, LID);
  
                         EXEC SQL INSERT INTO books VALUES
                         (:BID, :BNAME, :AUTHOR, :TYPE, :YEAR, :PAGE, :LID);
  
-                        // Ãâ·Â Çü½Ä
-                        fprintf(out_fp, "3.3. µµ¼­ Á¤º¸ µî·Ï\n");
+                        // ì¶œë ¥ í˜•ì‹
+                        fprintf(out_fp, "3.3. ë„ì„œ ì •ë³´ ë“±ë¡\n");
                         fprintf(out_fp, "> %s %s %s %s %d %d %s\n", BID, BNAME, AUTHOR, TYPE, &YEAR, &PAGE, LID);
                         break;
                     }
-				case 4:				// "3.4. µµ¼­ Á¤º¸ »èÁ¦" ¸Ş´º ºÎºĞ
+				case 4:				// "3.4. ë„ì„œ ì •ë³´ ì‚­ì œ" ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", BID);
 
 						EXEC SQL DELETE FROM books
 						WHERE bid = :BID;
 
-						// Ãâ·Â Çü½Ä
-						fprintf(out_fp, "3.4. µµ¼­ Á¤º¸ »èÁ¦\n");
+						// ì¶œë ¥ í˜•ì‹
+						fprintf(out_fp, "3.4. ë„ì„œ ì •ë³´ ì‚­ì œ\n");
 						fprintf(out_fp, "> %s\n", BID);
 						break;
 					}
-				case 5:				// "3.5. »ç¼­ Á¤º¸ µî·Ï" ¸Ş´º ºÎºĞ
+				case 5:				// "3.5. ì‚¬ì„œ ì •ë³´ ë“±ë¡" ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s %s %s %s %s", PID, PNAME, PADDR, PNUM, LID);
 
 						EXEC SQL INSERT INTO librarian VALUES
 						(:PID, :PNAME, :PADDR, :PNUM, :LID);
 
-						// Ãâ·Â Çü½Ä
-						fprintf(out_fp, "3.5. »ç¼­ Á¤º¸ µî·Ï\n");
+						// ì¶œë ¥ í˜•ì‹
+						fprintf(out_fp, "3.5. ì‚¬ì„œ ì •ë³´ ë“±ë¡\n");
 						fprintf(out_fp, "> %s %s %s %s %s\n", PID, PNAME, PADDR, PNUM, LID);
 						break;
 					}
-				case 6:				// "3.6. »ç¼­ Á¤º¸ »èÁ¦" ¸Ş´º ºÎºĞ
+				case 6:				// "3.6. ì‚¬ì„œ ì •ë³´ ì‚­ì œ" ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", PID);
 
 						EXEC SQL DELETE FROM librarian
 						WHERE pid = :PID;
 
-						// Ãâ·Â Çü½Ä
-						fprintf(out_fp, "3.6. »ç¼­ Á¤º¸ »èÁ¦\n");
+						// ì¶œë ¥ í˜•ì‹
+						fprintf(out_fp, "3.6. ì‚¬ì„œ ì •ë³´ ì‚­ì œ\n");
 						fprintf(out_fp, "> %s\n", PID);
 						break;
 					}
-				case 7:				// "3.7. µµ¼­°ü Á¤º¸ ÀüÃ¼ Á¶È¸" ¸Ş´º ºÎºĞ
+				case 7:				// "3.7. ë„ì„œê´€ ì •ë³´ ì „ì²´ ì¡°íšŒ" ë©”ë‰´ ë¶€ë¶„
 					{
 						EXEC SQL DECLARE c2 CURSOR FOR
 						SELECT lid, lname, laddr, lnum
 						FROM library;
 
-						fprintf(out_fp, "3.7 µµ¼­°ü Á¤º¸ ÀüÃ¼ Á¶È¸\n");
+						fprintf(out_fp, "3.7 ë„ì„œê´€ ì •ë³´ ì „ì²´ ì¡°íšŒ\n");
 
 						EXEC SQL OPEN c2;
 						for(;;)
@@ -409,7 +409,7 @@ void doTask()
 
 						break;
 					}
-				case 8:				// "3.8. µµ¼­°ü Á¤º¸ ÀÌ¸§ Á¶È¸" ¸Ş´º ºÎºĞ
+				case 8:				// "3.8. ë„ì„œê´€ ì •ë³´ ì´ë¦„ ì¡°íšŒ" ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", LNAME);
 
@@ -418,19 +418,19 @@ void doTask()
 						FROM library
 						WHERE lname = :LNAME;
 
-						fprintf(out_fp, "3.8. µµ¼­°ü Á¤º¸ ÀÌ¸§ Á¶È¸\n");
+						fprintf(out_fp, "3.8. ë„ì„œê´€ ì •ë³´ ì´ë¦„ ì¡°íšŒ\n");
 
 						fprintf(out_fp, "> %s %s %s %s\n", LID, LNAME, LADDR, LNUM);
 
 						break;
 					}
-				case 9:				// "3.9. »ç¼­ Á¤º¸ ÀüÃ¼ Á¶È¸" ¸Ş´º ºÎºĞ
+				case 9:				// "3.9. ì‚¬ì„œ ì •ë³´ ì „ì²´ ì¡°íšŒ" ë©”ë‰´ ë¶€ë¶„
 					{
 						EXEC SQL DECLARE c3 CURSOR FOR
 						SELECT pid, pname, paddr, pnum, lid
 						FROM librarian;
 
-						fprintf(out_fp, "3.9. »ç¼­ Á¤º¸ ÀüÃ¼ Á¶È¸\n");
+						fprintf(out_fp, "3.9. ì‚¬ì„œ ì •ë³´ ì „ì²´ ì¡°íšŒ\n");
 
 						EXEC SQL OPEN c3;
 						for(;;)
@@ -456,14 +456,14 @@ void doTask()
 
 						break;
 					}
-				case 10:			// "3.10. ¿¹¾à ³»¿ª ÀüÃ¼ Á¶È¸" ¸Ş´º ºÎºĞ
+				case 10:			// "3.10. ì˜ˆì•½ ë‚´ì—­ ì „ì²´ ì¡°íšŒ" ë©”ë‰´ ë¶€ë¶„
 					{
 						EXEC SQL DECLARE c4 CURSOR FOR
 						SELECT a.anum, a.cid, b.bname, b.author
 						FROM appointment a, books b
 						WHERE a.bid = b.bid;
 
-						fprintf(out_fp, "3.10. ¿¹¾à ³»¿ª ÀüÃ¼ Á¶È¸\n");
+						fprintf(out_fp, "3.10. ì˜ˆì•½ ë‚´ì—­ ì „ì²´ ì¡°íšŒ\n");
 
 						EXEC SQL OPEN c4;
 						for(;;)
@@ -489,7 +489,7 @@ void doTask()
 
 						break;
 					}
-				case 11:			// "3.11. ¿¹¾à ³»¿ª µµ¼­ÀÌ¸§ Á¶È¸" ¸Ş´º ºÎºĞ
+				case 11:			// "3.11. ì˜ˆì•½ ë‚´ì—­ ë„ì„œì´ë¦„ ì¡°íšŒ" ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", BNAME);
 
@@ -499,7 +499,7 @@ void doTask()
 						WHERE a.bid = b.bid and b.bname = :BNAME;
 
 
-						fprintf(out_fp, "3.11. ¿¹¾à ³»¿ª µµ¼­ÀÌ¸§ Á¶È¸\n");
+						fprintf(out_fp, "3.11. ì˜ˆì•½ ë‚´ì—­ ë„ì„œì´ë¦„ ì¡°íšŒ\n");
 
 						EXEC SQL OPEN c5;
 						for(;;)
@@ -525,7 +525,7 @@ void doTask()
 
 						break;
 					}
-				case 12:			// "3.12. ¿¹¾à ³»¿ª °í°´ÀÌ¸§ Á¶È¸" ¸Ş´º ºÎºĞ
+				case 12:			// "3.12. ì˜ˆì•½ ë‚´ì—­ ê³ ê°ì´ë¦„ ì¡°íšŒ" ë©”ë‰´ ë¶€ë¶„
 					{
 						fscanf(in_fp, "%s", CNAME);
 
@@ -534,7 +534,7 @@ void doTask()
 						FROM appointment a, books b, customer c
 						where a.bid = b.bid and a.cid = c.cid and c.cname = :CNAME;
 
-						fprintf(out_fp, "3.12 ¿¹¾à ³»¿ª °í°´ÀÌ¸§ Á¶È¸\n");
+						fprintf(out_fp, "3.12 ì˜ˆì•½ ë‚´ì—­ ê³ ê°ì´ë¦„ ì¡°íšŒ\n");
 
 						EXEC SQL OPEN c6;
 						for(;;)
@@ -562,11 +562,11 @@ void doTask()
 					}
 				case 13:
 					{
-						fprintf(out_fp, "3.13 ·Î±×¾Æ¿ô\n");
+						fprintf(out_fp, "3.13 ë¡œê·¸ì•„ì›ƒ\n");
 						fprintf(out_fp, "> admin\n");
 
 						printf("==================================\n");
-						printf("1.1. È¸¿ø°¡ÀÔ\n 1.2. ·Î±×ÀÎ\n 1.3. Á¾·á\n");
+						printf("1.1. íšŒì›ê°€ì…\n 1.2. ë¡œê·¸ì¸\n 1.3. ì¢…ë£Œ\n");
 						break;
 					}
 				}
@@ -581,10 +581,10 @@ void join()
 	char ID[MAX_STRING], name[MAX_STRING], gender[MAX_STRING], phone_num[MAX_STRING], address[MAX_STRING];
 	int age;
 
-	// ÀÔ·Â Çü½Ä : ÁÖ¹Î¹øÈ£, ÀÌ¸§, ÁÖ¼Ò, ÀüÈ­¹øÈ£¸¦ ÆÄÀÏ·ÎºÎÅÍ ÀĞÀ½
+	// ì…ë ¥ í˜•ì‹ : ì£¼ë¯¼ë²ˆí˜¸, ì´ë¦„, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸ë¥¼ íŒŒì¼ë¡œë¶€í„° ì½ìŒ
 	fscanf(in_fp, "%s %s %s %s\n", ID, name, address, phone_num);
 
-	// DB ¿¬»êÀ» Æ÷ÇÔÇÏ¿© ÇØ´ç ±â´É ¼öÇà
+	// DB ì—°ì‚°ì„ í¬í•¨í•˜ì—¬ í•´ë‹¹ ê¸°ëŠ¥ ìˆ˜í–‰
 	strcpy(CID, ID);
 	strcpy(CNAME, name);
 	strcpy(CADDR, address);
@@ -593,8 +593,8 @@ void join()
 	EXEC SQL INSERT INTO customer(cid, cname, caddr, cnum) VALUES
 	(:CID, :CNAME, :CADDR, :CNUM);
 
-	// Ãâ·Â Çü½Ä
-	fprintf(out_fp, "1.1. È¸¿ø°¡ÀÔ\n");
+	// ì¶œë ¥ í˜•ì‹
+	fprintf(out_fp, "1.1. íšŒì›ê°€ì…\n");
 	fprintf(out_fp, "%s %s %s %s\n", ID, name, address, phone_num);
 
 	return 0;
