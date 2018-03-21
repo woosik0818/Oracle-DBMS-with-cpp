@@ -4,6 +4,8 @@
 
 - [ESQL_code.cpp](https://github.com/woosik0818/Embedded-SQL-cpp/blob/master/Code/ESQL_code.cpp) - C++ 코드에 SQL을 임베디드 한 코드입니다.
 	
+- [ESQL_diagram.pdf](https://github.com/woosik0818/Embedded-SQL-cpp/blob/master/diagram/ESQL_diagram.pdf) - 도서관 관리 시스템의 ER 스키마입니다.
+
 		- 도서 예약에 관하여 E-R diagram을 만들고, 만든 Diagram에 기초해서 오라클을 기반으로 Embedded SQL과 C++을 이용하여 
 		  프로그래밍하였습니다. 
 		
