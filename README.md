@@ -1,8 +1,8 @@
-# 도서예약 시스템(MySQL, C++) 
+# 도서예약 시스템(Oracle DBMS, C++) 
 
 ### 도서관 관리 데이터베이스 개발
 
-- [ESQL_code.cpp](https://github.com/woosik0818/Embedded-SQL-cpp/blob/master/Code/ESQL_code.cpp) - C++ 코드에 SQL을 이식한 코드입니다.
+- [ESQL_code.cpp](https://github.com/woosik0818/Embedded-SQL-cpp/blob/master/Code/ESQL_code.cpp) - C++ 코드에 Oracle DBMS를 이식한 코드입니다.
 	
 - [ESQL_diagram.pdf](https://github.com/woosik0818/Embedded-SQL-cpp/blob/master/diagram/ESQL_diagram.pdf) - 도서관 관리 시스템의 ER 스키마입니다.
 
